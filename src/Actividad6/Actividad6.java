@@ -39,8 +39,6 @@ public class Actividad6 {
     }
 
     public static void cargarDatosDocente(ArrayList<Docentes> docentes, int opcion) {
-        System.out.println("");
-        System.out.println("");
         System.out.println("Ingrese el nombre");
         String nombre = in.next();
         System.out.println("Ingrese la edad");
