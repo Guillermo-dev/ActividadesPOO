@@ -86,7 +86,7 @@ public class Actividad6 {
                     + "\nEdad: " + docen.getEdad()
                     + "\nSalario: " + docen.getSalario()
             ); 
-            // System.out.println(docen.getClass().getSimpleName());
+            docen.mostrarAtributos();
             docen.plus();
         }
     }

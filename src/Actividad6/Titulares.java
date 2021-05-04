@@ -12,7 +12,11 @@ public class Titulares extends Docentes {
     public int getAntiguedad() {
         return antiguedad;
     }
- 
+
+    public void mostrarAtributos() {
+        System.out.println("Antiguedad: " + getAntiguedad());
+    }
+
     public boolean requierePlus() {
         return (getEdad() > 30) && (this.antiguedad > 6);
     }

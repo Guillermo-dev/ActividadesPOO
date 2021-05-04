@@ -53,6 +53,8 @@ public abstract class Docentes {
         }
     }
 
+    public abstract void mostrarAtributos();
+    
     public abstract boolean requierePlus();
 
 }

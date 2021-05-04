@@ -12,6 +12,10 @@ public class Suplentes extends Docentes {
     public char getZona() {
         return zona;
     }
+    
+    public void mostrarAtributos() {
+        System.out.println("Zona: " + getZona());
+    }
 
     public boolean requierePlus() {
         return (getEdad() < 25) && (zona == 'A' || zona == 'a');
