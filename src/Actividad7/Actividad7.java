@@ -5,7 +5,6 @@ import java.util.Scanner;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class Actividad7 {
 
@@ -17,7 +16,7 @@ public class Actividad7 {
 
         System.out.println("Desea agregar un docente? S/N");
         respuesta = in.next().charAt(0);
-        while (respuesta == 'S' || respuesta == 's'){
+        while (respuesta == 'S' || respuesta == 's') {
             do {
                 System.out.println("Cargar un Docente \n 1- Titular \n 2- Suplente");
                 opcion = in.nextInt();
@@ -54,8 +53,8 @@ public class Actividad7 {
         System.out.println("Ingrese la antiguedad:");
         int antiguedad = in.nextInt();
 
-        SessionFactory miFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Titulares.class).buildSessionFactory();
-        Session session = miFactory.openSession();
+        SessionFactory sessionFactory = HibernateUtils.newSessionFactory();
+        Session session = sessionFactory.openSession();
 
         try {
             Titulares titular = new Titulares(antiguedad, legajo, nombre, edad, salario);
@@ -64,7 +63,7 @@ public class Actividad7 {
             session.getTransaction().commit();
             session.close();
         } finally {
-            miFactory.close();
+            sessionFactory.close();
         }
     }
 
@@ -76,8 +75,10 @@ public class Actividad7 {
             zona = in.nextLine().substring(0, 1);
         } while (!zona.equals("a") && !zona.equals("A") && !zona.equals("b") && !zona.equals("B"));
 
-        SessionFactory miFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Suplentes.class).buildSessionFactory();
-        Session session = miFactory.openSession();
+
+        SessionFactory sessionFactory = HibernateUtils.newSessionFactory();
+        Session session = sessionFactory.openSession();
+        
         try {
             Suplentes suplente = new Suplentes(zona, legajo, nombre, edad, salario);
             session.beginTransaction();
@@ -85,23 +86,19 @@ public class Actividad7 {
             session.getTransaction().commit();
             session.close();
         } finally {
-            miFactory.close();
+            sessionFactory.close();
         }
     }
 
     public static void mostrarInformacion() {
-        SessionFactory miFactoryT = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Titulares.class).buildSessionFactory();
-        Session sessionT = miFactoryT.openSession();
+        SessionFactory sessionFactory= HibernateUtils.newSessionFactory();
+        Session session = sessionFactory.openSession();
 
-        SessionFactory miFactoryS = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Suplentes.class).buildSessionFactory();
-        Session sessionS = miFactoryS.openSession();
         try {
-            sessionT.beginTransaction();
-            Query queryT = sessionT.createQuery("from Titulares");
+            session.beginTransaction();
+            Query queryT = session.createQuery("from Titulares");
+            Query queryS = session.createQuery("from Suplentes");
             List<Titulares> titulares = (List<Titulares>) queryT.list();
-
-            sessionS.beginTransaction();
-            Query queryS = sessionS.createQuery("from Suplentes");
             List<Suplentes> suplentes = (List<Suplentes>) queryS.list();
 
             System.out.println("\n------------TITULARES------------");
@@ -132,8 +129,7 @@ public class Actividad7 {
             }
 
         } finally {
-            miFactoryT.close();
-            miFactoryS.close();
+            sessionFactory.close();
         }
     }
 
