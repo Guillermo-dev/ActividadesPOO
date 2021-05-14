@@ -47,6 +47,7 @@ Contributor(s):
     <property name="connection.password">newpassword</property>
     <property name="dialect">org.hibernate.dialect.PostgreSQL81Dialect</property>
     <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.c3p0.timeout">0</property>
     <mapping class="Actividad7.Suplentes"/>
     <mapping class="Actividad7.Titulares"/>
   </session-factory>

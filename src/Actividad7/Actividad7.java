@@ -100,6 +100,7 @@ public class Actividad7 {
             Query queryS = session.createQuery("from Suplentes");
             List<Titulares> titulares = (List<Titulares>) queryT.list();
             List<Suplentes> suplentes = (List<Suplentes>) queryS.list();
+            session.close();
 
             System.out.println("\n------------TITULARES------------");
             for (Titulares docen : titulares) {
