@@ -30,7 +30,15 @@ public class Curso {
         this.codigo = codigo;
     }
 
-    public void addAlumnos(Alumno alumno) {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void addAlumno(Alumno alumno) {
         if (this.alumnos == null) {
             this.alumnos = new ArrayList<>();
         }

@@ -37,13 +37,33 @@ public class Alumno {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-    } 
+    }
 
-    public void addCursos(Curso curso) {
-        if(this.cursos == null){
+    public int getId() {
+        return idAlumno;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void addCurso(Curso curso) {
+        if (this.cursos == null) {
             this.cursos = new ArrayList<>();
-        } 
+        }
         this.cursos.add(curso);
     }
-    
+
 }
