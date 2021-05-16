@@ -44,8 +44,7 @@ public class Actividad8 {
             HibernateUtils.saveAlumno(alumno);
             System.out.println("Se creo correctamente el alumno");
         } catch (Exception ex) {
-            System.out.println("Filada p*ta carga un dni distinto");
-            System.out.println("コードを繰り返さないでください、愚かです");
+            System.out.println("Error al crear el alumno, intentolo nuevamente");
             cargarAlumno();
         }
     }
@@ -62,8 +61,7 @@ public class Actividad8 {
             HibernateUtils.saveCurso(curso);
             System.out.println("Se creo correctamente el curso");
         } catch (Exception ex) {
-            System.out.println("Filada p*ta carga un codigo distinto");
-            System.out.println("コードを繰り返さないでください、愚かです");
+            System.out.println("Error al crear el curso, intentolo nuevamente");
             cargarCurso();
         }
     }
