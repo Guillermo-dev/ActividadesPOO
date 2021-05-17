@@ -74,30 +74,27 @@ public class Actividad8 {
         try {
             alumno = HibernateUtils.getAlumno(dni);
             HibernateUtils.showCursos(alumno.getId());
-            try {
-                List<Curso> cursos = HibernateUtils.getAllCursos();
-                System.out.println("Ingrese el curso al que se quiere inscribir: ");
-                int i = 1;
-                for (Curso curso : cursos) {
-                    System.out.println(i + ") " + curso.getNombre());
-                    i++;
-                }
-                int cursoElegido = in.nextInt();
 
-                try {
-                    HibernateUtils.updateAlumno(alumno.getId(), cursos.get(cursoElegido - 1));
-                    System.out.println("Se inscribio correctamente al curso: " + cursos.get(cursoElegido - 1).getNombre());
-                } catch (ConstraintViolationException ex) {
-                    System.out.println("Usted ya se encuentra subscripto a este curso");
-                }
-            } catch (Exception ex) {
-                System.out.println("Error inesperado, intentelo mas tarde");
+            List<Curso> cursos = HibernateUtils.getAllCursos();
+            System.out.println("Ingrese el curso al que se quiere inscribir: ");
+            int i = 1;
+            for (Curso curso : cursos) {
+                System.out.println(i + ") " + curso.getNombre());
+                i++;
             }
-        } catch (Exception ex) {
+            int cursoElegido = in.nextInt();
+
+            HibernateUtils.updateAlumno(alumno.getId(), cursos.get(cursoElegido - 1));
+            System.out.println("Se inscribio correctamente al curso: " + cursos.get(cursoElegido - 1).getNombre());
+
+        } catch (IndexOutOfBoundsException ex) {
             System.out.println("Error al encontrar el alumno, intentelo nuevamente");
             asignarCurso();
+        } catch (ConstraintViolationException ex) {
+            System.out.println("Usted ya se encuentra subscripto a este curso");
+        } catch (Exception ex) {
+            System.out.println("Error inesperado, intentelo mas tarde");
         }
-
     }
 
     public static void main(String[] args) {
