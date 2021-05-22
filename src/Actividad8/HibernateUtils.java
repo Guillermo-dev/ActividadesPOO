@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtils {
@@ -65,7 +64,7 @@ public class HibernateUtils {
         Session session = sessionFactory.openSession();
 
         Alumno alumno = (Alumno) session.get(Alumno.class, idAlumno);
-        if (alumno.getCursos().size() != 0) {
+        if (!alumno.getCursos().isEmpty()) {
             System.out.println("Cursos inscriptos: ");
             alumno.getCursos().forEach((curso) -> {
                 System.out.println(curso.getNombre());
